@@ -1,11 +1,122 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta http-equiv="refresh" content="0;url=https://www.plpfiles.com">
-<meta name="robots" content="noindex, nofollow">
-    <title>Redirecting...</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud by PLP Files</title>
+    <style>
+        /* Basic styling with dark mode support and background texture */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+        .headline-container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #e0e0e0;
+            text-align: center;
+        }
+
+        /* Search box styling */
+        .search-container {
+            display: flex;
+            align-items: center;
+            border: 1px solid #333; /* Dark border for search box */
+            border-radius: 30px;
+            padding: 10px;
+            width: 90%;
+            max-width: 500px;
+            background-color: #1e1e1e; /* Dark background for search box */
+        }
+
+        .search-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            color: #e0e0e0; /* Light color for search icon */
+        }
+
+        .search-box {
+            border: none;
+            outline: none;
+            background: transparent;
+            width: 100%;
+            font-size: 1rem;
+            color: #e0e0e0; /* Light text color */
+        }
+    </style>
 </head>
 <body>
-    <!-- No content needed here -->
+    <div class="search-container">
+        <!-- SVG Icon for Search -->
+        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        
+        <!-- Search Input -->
+        <input type="text" id="search-box" class="search-box" placeholder="Search..." onkeydown="handleKeyPress(event)">
+    </div>
+    <script>
+        const searchInput = document.getElementById("search-box"),
+              items = ["logo", "banner", "thumbnail", "posters", "flyer", "infographic", "mockup", "advertisement", "brochure"];
+        let currentIndex = 0;
+
+        function typePlaceholder() {
+            let currentItem = items[currentIndex], charIndex = 0;
+            searchInput.placeholder = "Search for ";
+            let typingInterval = setInterval(() => {
+                searchInput.placeholder += currentItem.charAt(charIndex);
+                charIndex++;
+                if (charIndex === currentItem.length) {
+                    clearInterval(typingInterval);
+                    setTimeout(() => { clearPlaceholder(currentItem.length); }, 2000);
+                }
+            }, 200);
+        }
+
+        function clearPlaceholder(length) {
+            let remainingLength = length;
+            let clearingInterval = setInterval(() => {
+                searchInput.placeholder = searchInput.placeholder.slice(0, -1);
+                remainingLength--;
+                if (remainingLength === 0) {
+                    clearInterval(clearingInterval);
+                    currentIndex = (currentIndex + 1) % items.length;
+                    typePlaceholder();
+                }
+            }, 100);
+        }
+
+        typePlaceholder();
+    </script>
+    <script>
+        function handleKeyPress(event) {
+            // Check if the Enter key is pressed
+            if (event.key === "Enter") {
+                // Get the search term from the input box
+                const query = document.getElementById('search-box').value.trim();
+                
+                // If search term is not empty, redirect to search URL
+                if (query) {
+                    const searchURL = `https://www.plpfiles.com/search?q=${encodeURIComponent(query)}`;
+                    window.location.href = searchURL;
+                }
+            }
+        }
+    </script>
 </body>
 </html>
