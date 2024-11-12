@@ -25,7 +25,7 @@
 
 const APP_CONFIG = {
   app: {
-    name: 'cloud'
+    name: 'fineshop-pwa-app'
   },
   github: {
     username: 'merazalveego',
@@ -38,7 +38,7 @@ const APP_CONFIG = {
     token: null
   },
   cacheConfig: {
-    cache: 'cloud',
+    cache: 'pwa-app',
     browserTTL: 2 * 60 * 60 * 24,
     edgeTTL: 2 * 60 * 60 * 24,
     defaultEtag: 'strong',
@@ -49,7 +49,6 @@ const APP_CONFIG = {
     bypassCache: false
   }
 };
-
 
 /**
  * @module mime
